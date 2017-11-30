@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "tree.h"
 #include "y.tab.h"
-#include "st.h"
+#include "ST.h"
 
 extern int top;
 STentry ST[100] = {0, NoType, o};

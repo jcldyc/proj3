@@ -2096,3 +2096,30 @@ void yyerror (char s[])
 	fprintf (stderr, "Error: %s at token: %s, on line: %d\n", s ,yytext, line_num);
 }
 
+typedef char name[15];
+static char Names[200][15] = {"<no name>"};
+int top = 0;
+
+int lookup (char s[])
+{
+  int i;
+
+  for (i = 1; i <= top; i ++)
+    if (strcmp (s, Names[i]) == 0) return i;
+  strcpy (Names[++top], s);
+  return top;
+}
+
+void printNames (void)
+{
+  int i = 0;
+
+  for (; i <= top; i++)
+    printf ("%d\t%s\n", i, Names[i]);
+}
+
+char *id_name (int i)
+{
+  return Names[i];
+}
+

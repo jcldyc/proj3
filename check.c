@@ -1,3 +1,6 @@
+///accounts/facstaff/schultemw/pub/cs4280/
+
+
 #include <stdio.h>
 #include "tree.h"
 #include "y.tab.h"
@@ -111,7 +114,7 @@ static int check_expr (tree t){
 						}}
 		break;
 
-		case LessThanEq :
+		case LTOE :
 			{int t1 = check_expr(t->first), t2 = check_expr(t->second);
 						if (t1 != t2) {
 							fprintf (stderr, "Type mismatch in LT comparison\n");
@@ -122,7 +125,7 @@ static int check_expr (tree t){
 						}}
 		break;
 
-		case GreaterThan : 
+		case GreatThan : 
 			{int t1 = check_expr(t->first), t2 = check_expr(t->second);
 						if (t1 != t2) {
 							fprintf (stderr, "Type mismatch in GT comparison\n");
@@ -133,7 +136,7 @@ static int check_expr (tree t){
 						}}
 		break;
 
-		case GreaterThanEq :
+		case GTOE :
 			{int t1 = check_expr(t->first), t2 = check_expr(t->second);
 						if (t1 != t2) {
 							fprintf (stderr, "Type mismatch in GE comparison\n");
@@ -179,7 +182,7 @@ static int check_expr (tree t){
 						}}
 			break;
 
-		case Star :
+		case Multiply :
 			{int t1 = check_expr(t->first), t2 = check_expr(t->second);
 							//check that they are numbers
 						if((t1 != Int && t1 != RealConst) || (t2 != Int && t2 != RealConst)){
@@ -196,7 +199,7 @@ static int check_expr (tree t){
 						}}
 			break; 
 
-		case Slash : {
+		case Divide : {
 			int t1 = check_expr(t->first), t2 = check_expr(t->second);
 			//check that they are numbers
 			if((t1 != Int && t1 != RealConst) || (t2 != Int && t2 != RealConst)){
@@ -239,27 +242,9 @@ static int check_expr (tree t){
 
 
 
-// static void handle_decls (tree t)
-// {
-// 	for (t; t!= NULL; t = t->next) {
-// 		int	kind = t->kind;
-// 		printf("handling %d\n", kind);
-// 		tree p;
-
-// 		if (kind != Int && kind != Boolean) {
-// 			fprintf (stderr, "Bad kind in decl\n"); return;
-// 		}
-// 		for (p = t->first; p != NULL; p = p->next) {
-// 			int	pos = p->value;
-// 			st[pos].index = pos;
-// 			st[pos].kind = kind;
-// 			}
-// 		}
-// }
 
 void check (tree t){
 	for (t; t != NULL; t = t->next) 
-		//printf("working with %d\n", t->kind);
 		switch (t->kind) {
 			case Prog:
 			printf("working with %d\n", t->kind);
